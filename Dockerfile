@@ -1,4 +1,4 @@
-FROM busybox
+FROM progrium/busybox
 
 MAINTAINER Oliver Veits <oliver.veits@web.de>
 
