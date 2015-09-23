@@ -1,6 +1,6 @@
 FROM progrium/busybox
 
-MAINTAINER Jimmi Dyson <jimmidyson@gmail.com>
+MAINTAINER Oliver Veits <oliver.veits@web.de>
 
 RUN opkg-install nginx
 
