@@ -85,6 +85,6 @@ The interface docker0 and eth0 with IP address 10.0.2.15 are not reachable from 
 
 From the Windows or iOS host, open an Internet browser and put an URL like
 
-    http://<IP address of eth1>.17.8.101
+    http://<IP address of eth1>
 
 to the URL field; in the example above, this is http://172.17.8.101.
