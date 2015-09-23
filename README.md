@@ -50,19 +50,25 @@ Should print the content of index.html to the screen:
 
 Connect to the NginX reverse Proxy per Browser
 ----------------------------------------------
+Linux:
+If you start a browser on the Linux docker host, use the URL 
+
+    http://localhost
+    
+Windows or iOS:
 On boot2docker hosts (Windows and iOS), find your docker host's IP address by issuing the command 
     
     boot2docker ip
      
-on the boot2docker start commandline window.
+on the boot2docker start commandline window. Usually, this is a Virtualbox host-only network and is reachable from the Windows or iOS host only, but not from the outside world.
 
-If you start a browser on the Linux docker host, use the URL 
+On Windows or iOS using a custom Linux Virtualbox VM as docker host (as we recommend since the installation of boot2docker is a nightmare sometimes), networking can be more tricky:
 
-    http://localhost
+On the Linux docker host, issue the command
 
-If the Linux docker host is hosted on Windows using Virtualbox, using a Browser on Windows or iOS might be more tricky; this holds especially, if the docker host is a Virtualbox VM using a NAT interface only. If you do not want to cope with static NAT entries in Virtualbox, I recommend to provision the Linux docker image with a bridged interface that can be accessed from the outside. If you want to connect to the docker container only from the Windows or iOS machine, a separate host-only network will do as well.
-
-Here an example of a CoreOS machine installed on Windows via Vagrant with a host-only network eth1:
+    ifconfig
+    
+The interface docker0 and eth0 with IP address 10.0.2.15 are not reachable from the Windows or iOS host. Therefore, we recommend to provision the custom Linux Virtualbox VM with an additional interface eth1 with a host-only (if it does not need to be reached from outside the Windows or iOS host) or bridged network. In this case the output of ifconfig will look something like  
 
     core@core-01 ~/docker-nginx-busybox $ ifconfig
     docker0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
@@ -77,10 +83,8 @@ Here an example of a CoreOS machine installed on Windows via Vagrant with a host
             inet 172.17.8.101  netmask 255.255.255.0  broadcast 172.17.8.255    <--- host-only network -> only reachable from the Virtualbox host
             ...
 
-All IP addresses are accessible from the docker host, but only eth1 IP address (172.17.8.101 in this case) is accessible from the Windows host, where the Virtualbox docker VM is running. Therefore, in this case
+From the Windows or iOS host, open an Internet browser and put an URL like
 
-    http://172.17.8.101
+    http://<IP address of eth1>.17.8.101
 
-will display the NginX welcome page. On the Windows machine.
-
-And even this address is not reachable from an other machine than the Windows host because of routing challenges, if the corresponding IP address is not known to the rest of the network.
+to the URL field; in the example above, this is http://172.17.8.101.
