@@ -66,48 +66,16 @@ Here an example of a CoreOS machine installed on Windows via Vagrant with a host
 
     core@core-01 ~/docker-nginx-busybox $ ifconfig
     docker0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-            inet 10.1.42.1  netmask 255.255.0.0  broadcast 0.0.0.0
-            inet6 fe80::3c0c:99ff:feb1:7977  prefixlen 64  scopeid 0x20<link>
-            ether 92:2f:30:74:1b:34  txqueuelen 0  (Ethernet)
-            RX packets 1098  bytes 53481 (52.2 KiB)
-            RX errors 0  dropped 0  overruns 0  frame 0
-            TX packets 1725  bytes 1820656 (1.7 MiB)
-            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+            inet 10.1.42.1  netmask 255.255.0.0  broadcast 0.0.0.0              <--- not reachable from the outside!!
+            ...
     
     eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-            inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255
-            inet6 fe80::a00:27ff:fe30:8234  prefixlen 64  scopeid 0x20<link>
-            ether 08:00:27:30:82:34  txqueuelen 1000  (Ethernet)
-            RX packets 176628  bytes 208651633 (198.9 MiB)
-            RX errors 0  dropped 0  overruns 0  frame 0
-            TX packets 90945  bytes 5658801 (5.3 MiB)
-            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+            inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255         <--- not reachable from the outside!!
+            ...
     
     eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-            inet 172.17.8.101  netmask 255.255.255.0  broadcast 172.17.8.255
-            inet6 fe80::a00:27ff:fee2:7464  prefixlen 64  scopeid 0x20<link>
-            ether 08:00:27:e2:74:64  txqueuelen 1000  (Ethernet)
-            RX packets 20653  bytes 2043827 (1.9 MiB)
-            RX errors 0  dropped 0  overruns 0  frame 0
-            TX packets 297  bytes 21895 (21.3 KiB)
-            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-    
-    lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-            inet 127.0.0.1  netmask 255.0.0.0
-            inet6 ::1  prefixlen 128  scopeid 0x10<host>
-            loop  txqueuelen 0  (Local Loopback)
-            RX packets 897095  bytes 186016501 (177.3 MiB)
-            RX errors 0  dropped 0  overruns 0  frame 0
-            TX packets 897095  bytes 186016501 (177.3 MiB)
-            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-    
-    vethe5cab35: flags=67<UP,BROADCAST,RUNNING>  mtu 1500
-            inet6 fe80::902f:30ff:fe74:1b34  prefixlen 64  scopeid 0x20<link>
-            ether 92:2f:30:74:1b:34  txqueuelen 0  (Ethernet)
-            RX packets 24  bytes 2809 (2.7 KiB)
-            RX errors 0  dropped 0  overruns 0  frame 0
-            TX packets 35  bytes 2900 (2.8 KiB)
-            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+            inet 172.17.8.101  netmask 255.255.255.0  broadcast 172.17.8.255    <--- host-only network -> only reachable from the Virtualbox host
+            ...
 
 All IP addresses are accessible from the docker host, but only eth1 IP address (172.17.8.101 in this case) is accessible from the Windows host, where the Virtualbox docker VM is running. Therefore, in this case
 
