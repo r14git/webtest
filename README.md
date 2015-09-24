@@ -88,3 +88,13 @@ From the Windows or iOS host, open an Internet browser and put an URL like
     http://<IP address of eth1>
 
 to the URL field; in the example above, this is http://172.17.8.101.
+
+Automatically build a Docker Image on Docker Hub from this Repository
+---------------------------------------------------------------------
+Sign up for Github and Docker Hub, if not already done. Fork this repository (button on the upper right), if not already done.
+
+On the Git Hub repository project home (https://github.com/<yourname>/docker-nginx-busybox), goto -> Settings (on the right) -> Webhooks & Services -> Add Service -> choose Docker -> enter your Docker Hub password and confirm
+
+On Docker Hub Home, left of your username -> Create -> Create Automated Build -> Choose your repository -> Enter short description (required) -> Create
+
+Test by changing e.g. the Readme file in your Github repository. Thiis should trigger a new Docker image build (this may take a while)
