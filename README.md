@@ -16,7 +16,6 @@ If you are searching for more professional nginx images with prepared https supp
 3. Install docker, if not already done. On Windows, I recommend to install docker via Vagrant instead of going through the hassle of following the official Docker installation procedure. On my blog [Install a Docker Cluster in less than 10 Minutes](https://wordpress.com/post/97734730/32/), I show how you can install a CoreOS minimal docker host very quickly. Here we will need only a single host, so you can skip the etcd discovery part and the change of the num_instances variable.
 
 ## Manually build a docker image
------------------------------
 (Status: tested successfully)
 
 ### Clone and build the Image
