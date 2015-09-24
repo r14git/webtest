@@ -13,7 +13,7 @@ If you are searching for more professional nginx images with prepared https supp
 ### Prerequisites
 1. Sign up for Github and Docker Hub, if not already done.
 2. Fork this git repository (button on the upper right), if not already done.
-3. Install docker, if not already done. On Windows, I recommend to install docker via Vagrant instead of going through the hassle of following the official Docker installation procedure. On my blog [Install a Docker Cluster in less than 10 Minutes](https://wordpress.com/post/97734730/32/), I show how you can install a CoreOS minimal docker host very quickly. Here we will need only a single host, so you can skip the etcd discovery part and the change of the num_instances variable.
+3. Install docker, if not already done. On Windows, I recommend to install docker via Vagrant instead of going through the hassle of following the official Docker installation procedure. On my blog [Install a Docker Cluster in less than 10 Minutes](https://oliverveits.wordpress.com/2015/08/19/docker-coreos-cluster-in-less-than-10-minutes), I show how you can install a CoreOS minimal docker host very quickly. Here we will need only a single host, so you can skip the etcd discovery part and the change of the num_instances variable.
 
 ## Manually build a docker image
 (Status: tested successfully)
@@ -112,17 +112,23 @@ to the URL field; in the example above, this is http://172.17.8.101.
 ## Automatically build a Docker Image on Docker Hub from this Repository
 (Status: tested successfully)
 
-Sign up for Github and Docker Hub, if not already done. 
+#### Prerequisites
+1. Sign up for Github and Docker Hub, if not already done. 
+2. Fork this git repository (button on the upper right), if not already done.
+3. Install docker (see Prerequisites above)
 
-Fork this git repository (button on the upper right), if not already done.
-
+#### Link Github with Docker
 On the Git Hub repository project home (https://github.com/<yourname>/docker-nginx-busybox), goto -> Settings (on the right) -> Webhooks & Services -> Add Service -> choose Docker -> enter your Docker Hub password and confirm
 
+#### Set Trigger on Docker
 On Docker Hub Home, left of your username -> Create -> Create Automated Build -> Choose your repository -> Enter short description (required) -> Create
+
+#### Test Triggered Build
 
 Test the automatic build trigger by changing e.g. the Readme file in your Github repository. This should trigger a new Docker image build (this may take a while). Check the results on the Docker Hub Build Details tab of the newly created docker repository. After some time, it should show a build status of "done".
 
-Test the image by issuing (change "oveits" to your Docker Hub username)
+#### Test the Image
+Test the docker image by issuing follwoing commands (change "oveits" to your Docker Hub username)
 
     ID=$(docker run -d -p 80:80 oveits/docker-nginx-busybox); echo $ID
     
