@@ -11,6 +11,8 @@ If you are searching for more professional nginx images with prepared https supp
 
 Manually build a docker image
 -----------------------------
+(Status: tested successfully)
+
 On the docker host, perform the command:
 
     docker build --tag=nginx-busybox:latest .
@@ -97,12 +99,7 @@ to the URL field; in the example above, this is http://172.17.8.101.
 
 Automatically build a Docker Image on Docker Hub from this Repository
 ---------------------------------------------------------------------
-
-WORK IN PROGRESS
-
-Note: the resulting automatically built image is not yet tested (in the moment, I believe that it will not work, since it has 4 MB instead of the expected 8 MB; Looks like the nginx SW download failed?
-
---
+(Status: tested successfully)
 
 Sign up for Github and Docker Hub, if not already done. 
 
@@ -112,4 +109,30 @@ On the Git Hub repository project home (https://github.com/<yourname>/docker-ngi
 
 On Docker Hub Home, left of your username -> Create -> Create Automated Build -> Choose your repository -> Enter short description (required) -> Create
 
-Test by changing e.g. the Readme file in your Github repository. This should trigger a new Docker image build (this may take a while). Check the results on the Docker Hub Build Details tab of the newly created docker repository. After some time, it should show a build status of "done".
+Test the automatic build trigger by changing e.g. the Readme file in your Github repository. This should trigger a new Docker image build (this may take a while). Check the results on the Docker Hub Build Details tab of the newly created docker repository. After some time, it should show a build status of "done".
+
+Test the image by issuing (change <yourdockername> to your Docker hub username
+
+    ID=$(docker run -d -p 80:80 <yourdockername>/docker-nginx-busybox); echo $ID
+    
+Check the container status and the logs with
+
+    docker ps
+    docker logs $ID
+    
+And connect to the server by issuing the command
+
+    curl localhost
+    
+on the docker host. The answer should look like
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Welcome to nginx on busybox!</title>
+    ...
+    <p><em>Thank you for using nginx.</em></p>
+    </body>
+    </html>
+    
+DONE.
