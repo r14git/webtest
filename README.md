@@ -111,9 +111,9 @@ On Docker Hub Home, left of your username -> Create -> Create Automated Build ->
 
 Test the automatic build trigger by changing e.g. the Readme file in your Github repository. This should trigger a new Docker image build (this may take a while). Check the results on the Docker Hub Build Details tab of the newly created docker repository. After some time, it should show a build status of "done".
 
-Test the image by issuing (change <yourdockername> to your Docker hub username
+Test the image by issuing (change "oveits" to your Docker Hub username)
 
-    ID=$(docker run -d -p 80:80 <yourdockername>/docker-nginx-busybox); echo $ID
+    ID=$(docker run -d -p 80:80 oveits/docker-nginx-busybox); echo $ID
     
 Check the container status and the logs with
 
