@@ -1,13 +1,13 @@
-docker-nginx-busybox: hello world example for building Docker images
+docker-nginx-busybox (~ 8 MB image size)
 ====================
 This is a "Hello World" example on how to build docker images (manually and automated). 
 
-As target of our hello world examle, we have chosen a tiny docker image for nginx built on top of busybox forked from https://github.com/jimmidyson/docker-nginx-busybox. A successful build will result in an image of ~8 MB, which is perfectly small for a hello world example.
+As target of our hello world examle, I have chosen a tiny docker image for nginx built on top of busybox forked from https://github.com/jimmidyson/docker-nginx-busybox. A successful build will result in an image of ~8 MB (i.e. a perfect hello world size).
 
 1. We describe on how to perform a manual build from Dockerfile and how to test the image. 
 2. We describe on how to automatically build a Docker image from a Git repository.
 
-If you are searching for more professional nginx images, check out the official nginx image on https://hub.docker.com/_/nginx/, which is larger as this image (~8MB) but still has only ~52 MB size. If it must be smaller, https://hub.docker.com/r/connexiolabs/alpine-nginx/ with ~27 MB might be an alternative as well. 
+If you are searching for more professional nginx images with prepared https support, check out the official nginx image on https://hub.docker.com/_/nginx/, which is larger as this image (~52 MB). If it must be smaller, https://hub.docker.com/r/connexiolabs/alpine-nginx/ with ~27 MB might be an alternative as well.
 
 Manually build a docker image
 -----------------------------
