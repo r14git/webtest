@@ -1,5 +1,6 @@
-docker-nginx-busybox (~ 8 MB image size)
-====================
+# docker-nginx-busybox 
+(~ 8 MB image size)
+
 This is a "Hello World" example on how to build docker images (manually and automated). 
 
 As target of our hello world examle, I have chosen a tiny docker image for nginx built on top of busybox forked from https://github.com/jimmidyson/docker-nginx-busybox. A successful build will result in an image of ~8 MB (i.e. a perfect hello world size).
@@ -9,9 +10,21 @@ As target of our hello world examle, I have chosen a tiny docker image for nginx
 
 If you are searching for more professional nginx images with prepared https support, check out the official nginx image on https://hub.docker.com/_/nginx/, which is larger as this image (~52 MB). If it must be smaller, https://hub.docker.com/r/connexiolabs/alpine-nginx/ with ~27 MB might be an alternative as well.
 
-Manually build a docker image
+### Prerequisites
+1. Sign up for Github and Docker Hub, if not already done.
+2. Fork this git repository (button on the upper right), if not already done.
+3. Install docker, if not already done. On Windows, I recommend to install docker via Vagrant instead of going through the hassle of following the official Docker installation procedure. On my blog [Install a Docker Cluster in less than 10 Minutes](https://wordpress.com/post/97734730/32/), I show how you can install a CoreOS minimal docker host very quickly. Here we will need only a single host, so you can skip the etcd discovery part and the change of the num_instances variable.
+
+## Manually build a docker image
 -----------------------------
 (Status: tested successfully)
+
+### Clone and build the Image
+
+Clone your repository to a docker host. On the host, issue the commands (but replace "oveits" by your Docker Hub username)
+
+    git clone https://github.com/oveits/docker-nginx-busybox docker-nginx-busybox
+    cd docker-nginx-busybox
 
 On the docker host, perform the command:
 
@@ -26,8 +39,7 @@ should lead to an output similar to:
     REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
     nginx-busybox       latest              5c21ee35c67c        8 hours ago         7.898 MB
 
-Start Container from the above created image
---------------------------------------------
+### Start Container from the above created Image
 On the docker host, perform the command:
 
     docker run -d -p 80:80 nginx-busybox
@@ -38,11 +50,9 @@ Verify that the container has been created and is up and running:
     CONTAINER ID        IMAGE                  COMMAND             CREATED             STATUS              PORTS                         NAMES
     a8614bead979        nginx-busybox:latest   "/usr/sbin/nginx"   4 seconds ago       Up 3 seconds        0.0.0.0:80->80/tcp, 443/tcp   stoic_mestorf
 
-Connect to the NginX reverse Proxy locally
-------------------------------------------
+### Connect to the NginX reverse Proxy locally
 On the docker host, the commands
 
-    export http_proxy=
     curl localhost
     
 Should print the content of index.html to the screen:
@@ -56,8 +66,7 @@ Should print the content of index.html to the screen:
     </body>
     </html>
 
-Connect to the NginX reverse Proxy per Browser
-----------------------------------------------
+### Connect to the NginX reverse Proxy per Browser
 Linux:
 If you start a browser on the Linux docker host, use the URL 
 
@@ -93,12 +102,15 @@ The interface docker0 and eth0 with IP address 10.0.2.15 are not reachable from 
 
 From the Windows or iOS host, open an Internet browser and put an URL like
 
+    # just in case http_proxy and/or HTTP_PROXY are not empty, perform:
+    unset http_proxy
+    unset HTTP_PROXY
+    # then:
     http://<IP address of eth1>
 
 to the URL field; in the example above, this is http://172.17.8.101.
 
-Automatically build a Docker Image on Docker Hub from this Repository
----------------------------------------------------------------------
+## Automatically build a Docker Image on Docker Hub from this Repository
 (Status: tested successfully)
 
 Sign up for Github and Docker Hub, if not already done. 
