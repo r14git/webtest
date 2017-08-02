@@ -1,3 +1,5 @@
+just changing to check if auto build works. 
+
 # docker-nginx-busybox 
 (~ 8 MB image size)
 
